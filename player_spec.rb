@@ -34,4 +34,26 @@ describe Player do
     @player.blam
     expect(@player.health).to eq(@initial_health - 10)
   end
+
+  context 'player has health of 150' do
+    before do
+      @initial_health = 150
+      @player = Player.new('larry', @initial_health)
+    end
+
+    it 'returns true if player is strong' do
+      expect(@player).to be_strong
+    end
+  end
+
+  context 'player has health of 100 or less' do
+    before do
+      @initial_health = 99
+      @player = Player.new('moe', @initial_health)
+    end
+
+    it 'returns false if player health is less 100 or less' do
+      expect(@player).not_to be_strong
+    end
+  end
 end
