@@ -8,4 +8,6 @@ throwdown = Game.new('throwdown')
 throwdown.add_player(p1)
 throwdown.add_player(p2)
 throwdown.add_player(p3)
-throwdown.play
+throwdown.play(3)
+throwdown.result
+throwdown.winning
