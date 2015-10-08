@@ -17,11 +17,7 @@ class Game
 
   def turn(player)
     action = actions.sample
-    if !action.nil?
-      player.send(action)
-    else
-      puts "#{player.name} missed a turn"
-    end
+    !action.nil? ? player.send(action) : puts("#{player.name} missed a turn")
   end
 
   def play
