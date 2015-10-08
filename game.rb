@@ -1,4 +1,5 @@
 require_relative 'player'
+require_relative 'roll'
 
 class Game
   attr_reader :title
@@ -11,20 +12,16 @@ class Game
     @players << player
   end
 
-  def actions
-    [:w00t, :blam, nil]
-  end
-
-  def turn(player)
-    action = actions.sample
-    !action.nil? ? player.send(action) : puts("#{player.name} missed a turn")
-  end
-
   def play
     puts "There are #{@players.size} players in the game: "
-    @players.shuffle.each do |player|
-      turn(player)
+    # @players.shuffle.each do |player|
+    @players.each do |player|
+      puts "#{player.name} is rolling"
+      sleep(1)
+      Roll.new(player)
+      sleep(0.5)
       puts player
+      sleep(1)
     end
   end
 end
