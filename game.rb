@@ -18,7 +18,7 @@ class Game
     @players.each do |player|
       puts "#{player.name} is rolling"
       sleep(1)
-      Roll.new(player)
+      Roll.turn(player)
       sleep(0.5)
       puts player
       sleep(1)
