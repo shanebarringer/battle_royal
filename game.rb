@@ -1,5 +1,6 @@
 require_relative 'player'
 require_relative 'roll'
+require_relative 'treasure_trove'
 
 class Game
   attr_reader :title
@@ -12,17 +13,18 @@ class Game
     @players << player
   end
 
+  def start_of_game
+    puts "There are #{@players.size} players and #{TreasureTrove::TREASURES.count} treasures available in this game: "
+
+    TreasureTrove::TREASURES.each { |x| puts "A #{x.name} is worth #{x.points} points" }
+  end
+
   def play(rounds)
-    puts "There are #{@players.size} players in the game: "
-    # @players.shuffle.each do |player|
+    start_of_game
     1.upto(rounds) do
       @players.shuffle.each do |player|
-        puts "#{player.name} is rolling"
-        # sleep(1)
         Roll.turn(player)
-        # sleep(0.5)
-        puts player
-        # sleep(1)
+        Roll.treasure(player)
       end
     end
   end
