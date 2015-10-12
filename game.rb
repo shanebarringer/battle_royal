@@ -33,7 +33,11 @@ class Game
 
   def print_player_and_health(criteria)
     criteria.sort_by(&:score).reverse_each do |player|
-      puts "#{player.name}'s point totals: \n #{player.points} grand total points"
+      puts "\n#{player.name}'s point totals: "
+      player.each_found_treasure do |treasure|
+        puts "#{treasure.points} total #{treasure.name} points"
+      end
+      puts "#{player.points} grand total points"
     end
   end
 
