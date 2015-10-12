@@ -7,6 +7,7 @@ class Game
   def initialize(title)
     @title = title
     @players = [].sort
+    @total_points = 0
   end
 
   def add_player(player)
@@ -24,14 +25,15 @@ class Game
     1.upto(rounds) do
       @players.shuffle.each do |player|
         Roll.turn(player)
-        Roll.treasure(player)
+        player.found_treasure(Roll.treasure(player))
+        player.points
       end
     end
   end
 
   def print_player_and_health(criteria)
     criteria.sort_by(&:score).reverse_each do |player|
-      puts "#{player.name} (#{player.health})"
+      puts "#{player.name}'s point totals: \n #{player.points} grand total points"
     end
   end
 
@@ -44,6 +46,8 @@ class Game
 
     puts "\n#{weaker.size} weaker players:"
     print_player_and_health(weaker)
+
+    puts "\n#{total_points} total points for this match"
   end
 
   def winning
@@ -51,5 +55,9 @@ class Game
     @players.sort_by(&:score).reverse_each do |player|
       puts "#{player.name}...............#{player.score}"
     end
+  end
+
+  def total_points
+    @players.inject(0) { |sum, player| sum + player.points }
   end
 end
