@@ -23,6 +23,8 @@ class Game
   def play(rounds)
     start_of_game
     1.upto(rounds) do
+      # if a block is given AND the block returns true, break out of loop.
+      break if yield if block_given?
       @players.shuffle.each do |player|
         Roll.turn(player)
         player.found_treasure(Roll.treasure(player))
