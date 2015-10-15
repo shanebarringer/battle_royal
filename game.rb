@@ -1,6 +1,8 @@
 require_relative 'player'
 require_relative 'roll'
 require_relative 'treasure_trove'
+require_relative 'clumsy_player'
+require_relative 'berserk_player'
 require 'csv'
 
 class Game
