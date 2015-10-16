@@ -1,10 +1,10 @@
 require_relative 'game'
 
-throwdown = Game.new('throwdown')
+throwdown = BattleRoyal::Game.new('throwdown')
 throwdown.load_players(ARGV.shift || 'csv/favorite_players.csv')
-klutz = ClumsyPlayer.new('klutz', 105, 5)
+klutz = BattleRoyal::ClumsyPlayer.new('klutz', 105, 5)
 throwdown.add_player(klutz)
-berserker = BerserkPlayer.new('berserker', 50)
+berserker = BattleRoyal::BerserkPlayer.new('berserker', 50)
 throwdown.add_player(berserker)
 
 loop do
