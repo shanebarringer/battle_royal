@@ -1,7 +1,7 @@
 module BattleRoyal
   module Roll
     def self.actions
-      [:w00t, :blam, nil]
+      [:power_up, :damage, nil]
     end
 
     def self.turn(player)
@@ -9,8 +9,8 @@ module BattleRoyal
       !action.nil? ? player.send(action) : puts("#{player.name} missed a turn")
     end
 
-    def self.treasure(_player)
-      TreasureTrove.random
+    def self.weapon(_player)
+      WeaponChest.random
     end
   end
 end

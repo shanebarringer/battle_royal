@@ -1,13 +1,13 @@
 require_relative 'player'
 require_relative 'roll'
-require_relative 'treasure_trove'
-require_relative 'clumsy_player'
-require_relative 'berserk_player'
+require_relative 'weapon_chest'
+require_relative 'lame_player'
+require_relative 'advantaged_player'
 require 'csv'
 module BattleRoyal
   class Game
-    attr_reader :title
-    def initialize(title)
+    attr_accessor :title
+    def initialize(title = 'Throwdown')
       @title = title
       @players = [].sort
       @total_points = 0
@@ -33,9 +33,9 @@ module BattleRoyal
     end
 
     def start_of_game
-      puts "There are #{@players.size} players and #{TreasureTrove::TREASURES.count} treasures available in this game: "
+      puts "There are #{@players.size} players and #{WeaponChest::TREASURES.count} weapons available in this game: "
 
-      TreasureTrove::TREASURES.each { |x| puts "A #{x.name} is worth #{x.points} points" }
+      WeaponChest::TREASURES.each { |x| puts "A #{x.name} is worth #{x.points} points" }
     end
 
     def play(rounds)
@@ -45,7 +45,7 @@ module BattleRoyal
         break if yield if block_given?
         @players.shuffle.each do |player|
           Roll.turn(player)
-          player.found_treasure(Roll.treasure(player))
+          player.found_weapon(Roll.weapon(player))
           player.points
         end
       end
@@ -54,8 +54,8 @@ module BattleRoyal
     def print_player_and_health(criteria)
       criteria.sort_by(&:score).reverse_each do |player|
         puts "\n#{player.name}'s point totals: "
-        player.each_found_treasure do |treasure|
-          puts "#{treasure.points} total #{treasure.name} points"
+        player.each_found_weapon do |weapon|
+          puts "#{weapon.points} total #{weapon.name} points"
         end
         puts "#{player.points} grand total points"
       end

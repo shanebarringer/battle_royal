@@ -1,4 +1,4 @@
-require_relative 'treasure_trove'
+require_relative 'weapon_chest'
 require_relative 'playable'
 module BattleRoyal
   class Player
@@ -8,7 +8,7 @@ module BattleRoyal
     def initialize(name, health = 100)
       @name = name.capitalize
       @health = health
-      @found_treasures = Hash.new(0)
+      @found_weapons = Hash.new(0)
     end
 
     def to_s
@@ -17,19 +17,19 @@ module BattleRoyal
     def self.from_csv(string)
       Player.new(string[0], string[1].to_i)
     end
-    def found_treasure(treasure)
-      @found_treasures[treasure.name] += treasure.points
-      puts "#{@name} found a #{treasure.name} worth #{treasure.points} points"
-      puts @found_treasures
+    def found_weapon(weapon)
+      @found_weapons[weapon.name] += weapon.points
+      puts "#{@name} found a #{weapon.name} worth #{weapon.points} points"
+      puts @found_weapons
     end
 
     def points
-      @found_treasures.values.inject(0, :+)
+      @found_weapons.values.inject(0, :+)
     end
 
-    def each_found_treasure
-      @found_treasures.each do |name, points|
-        yield Treasure.new(name, points)
+    def each_found_weapon
+      @found_weapons.each do |name, points|
+        yield Weapon.new(name, points)
       end
     end
 
@@ -44,8 +44,8 @@ if __FILE__ == $PROGRAM_NAME
   player = Player.new('moe')
   puts player.name
   puts player.health
-  player.w00t
+  player.power_up
   puts player.health
-  player.blam
+  player.damage
   puts player.health
 end

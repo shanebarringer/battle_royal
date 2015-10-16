@@ -1,13 +1,13 @@
 module BattleRoyal
   module Playable
-    def w00t
+    def power_up
       self.health += 15
-      puts "#{name} got w00ted!"
+      puts "#{name} got a power up!"
     end
 
-    def blam
+    def damage
       self.health -= 10
-      puts "#{name} got blammed!"
+      puts "#{name} got damaged!"
     end
 
     def strong?
