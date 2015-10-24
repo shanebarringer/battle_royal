@@ -30,7 +30,7 @@ module BattleRoyal
           file.puts sort_and_score(player)
         end
       end
-  end
+    end
 
     def start_of_game
       puts "There are #{@players.size} players and #{WeaponChest::WEAPONS.count} weapons available in this game: "
