@@ -3,10 +3,10 @@ module BattleRoyal
   describe Game do
     it 'computes total points as the sum of all player points' do
       $stdout = StringIO.new
-      game = Game.new('knockout')
+      game = Game.new('battle')
 
-      player1 = Player.new('moe')
-      player2 = Player.new('larry')
+      player1 = Player.new('scorpion')
+      player2 = Player.new('stryker')
 
       game.add_player(player1)
       game.add_player(player2)

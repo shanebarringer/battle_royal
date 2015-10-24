@@ -2,7 +2,7 @@ require_relative 'lame_player'
 module BattleRoyal
   describe LamePlayer do
     before do
-      @player = LamePlayer.new('klutz')
+      @player = LamePlayer.new('stryker')
     end
 
     it 'only gets half the point value for each weapon' do

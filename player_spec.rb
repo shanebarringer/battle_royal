@@ -8,14 +8,14 @@ module BattleRoyal
       $stdout = StringIO.new
 
       @initial_health = 150
-      @player = Player.new('larry', @initial_health)
+      @player = Player.new('stryker', @initial_health)
     end
 
     def found_weapon
       @player.found_weapon(Weapon.new(:axe, 50))
     end
     it 'has a capitalized name' do
-      expect(@player.name).to eq('Larry')
+      expect(@player.name).to eq('Stryker')
     end
 
     it 'has an initial health' do
@@ -25,7 +25,7 @@ module BattleRoyal
     it 'has a string representation' do
       2.times { found_weapon }
 
-      expect(@player.to_s).to eq('Larry health = 150, points = 100, and score = 250')
+      expect(@player.to_s).to eq('Stryker health = 150, points = 100, and score = 250')
     end
 
     it 'computes a score as the sum of its health and points' do
@@ -47,7 +47,7 @@ module BattleRoyal
     context 'player has health of 150' do
       before do
         @initial_health = 150
-        @player = Player.new('larry', @initial_health)
+        @player = Player.new('stryker', @initial_health)
       end
 
       it 'returns true if player is strong' do
@@ -58,7 +58,7 @@ module BattleRoyal
     context 'player has health of 100 or less' do
       before do
         @initial_health = 99
-        @player = Player.new('moe', @initial_health)
+        @player = Player.new('scorpion', @initial_health)
       end
 
       it 'returns false if player health is less 100 or less' do

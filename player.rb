@@ -50,7 +50,7 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   # part of the readme
-  player = Player.new('moe')
+  player = Player.new('Scorpion')
   puts player.name
   puts player.health
   player.power_up
