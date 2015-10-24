@@ -6,7 +6,7 @@ require_relative 'advantaged_player'
 require 'csv'
 module BattleRoyal
   class Game
-    attr_accessor :title
+    attr_accessor :title, :players
     def initialize(title = 'Throwdown')
       @title = title
       @players = [].sort
@@ -30,12 +30,20 @@ module BattleRoyal
           file.puts sort_and_score(player)
         end
       end
-    end
+  end
 
     def start_of_game
-      puts "There are #{@players.size} players and #{WeaponChest::TREASURES.count} weapons available in this game: "
+      puts "There are #{@players.size} players and #{WeaponChest::WEAPONS.count} weapons available in this game: "
 
-      WeaponChest::TREASURES.each { |x| puts "A #{x.name} is worth #{x.points} points" }
+      WeaponChest::WEAPONS.each { |x| puts "A #{x.name} is worth #{x.points} points" }
+    end
+
+    def attack_player
+      @players.sample
+    end
+
+    def fatality?(player)
+      player.health < 0
     end
 
     def play(rounds)
@@ -43,10 +51,12 @@ module BattleRoyal
       1.upto(rounds) do
         # if a block is given AND the block returns true, break out of loop.
         break if yield if block_given?
-        @players.shuffle.each do |player|
-          Roll.turn(player)
-          player.found_weapon(Roll.weapon(player))
-          player.points
+        @players.each do |player|
+          unless fatality?(player)
+            Roll.turn(player)
+            player.attack(attack_player, player.found_weapon(Roll.weapon(player)))
+            player.points
+          end
         end
       end
     end
@@ -58,12 +68,13 @@ module BattleRoyal
           puts "#{weapon.points} total #{weapon.name} points"
         end
         puts "#{player.points} grand total points"
+        puts "health: #{player.health}"
       end
     end
 
     def result
       stronger, weaker = @players.partition(&:strong?)
-      puts "\n#{@title.capitalize} Statistics:"
+      puts "\n Statistics:"
 
       puts "\n#{stronger.size} strong players:"
       print_player_and_health(stronger)

@@ -14,13 +14,22 @@ module BattleRoyal
     def to_s
       "#{@name} health = #{@health}, points = #{points}, and score = #{score}"
     end
+
     def self.from_csv(string)
       Player.new(string[0], string[1].to_i)
     end
+
     def found_weapon(weapon)
       @found_weapons[weapon.name] += weapon.points
-      puts "#{@name} found a #{weapon.name} worth #{weapon.points} points"
-      puts @found_weapons
+      print "\n#{@name} found a #{weapon.name} worth #{weapon.points} damage points"
+
+      @found_weapons[weapon.name]
+    end
+
+    def attack(player, found_weapon)
+      @health = health - found_weapon
+      print " and attacked #{player.name} \n"
+      puts "#{player.name}'s health is now: #{player.health} \n"
     end
 
     def points

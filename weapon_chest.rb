@@ -2,7 +2,7 @@ module BattleRoyal
   Weapon = Struct.new(:name, :points)
 
   module WeaponChest
-    TREASURES = [
+    WEAPONS = [
       Weapon.new(:throwing_star, 5),
       Weapon.new(:staff, 25),
       Weapon.new(:axe, 50),
@@ -12,7 +12,7 @@ module BattleRoyal
     ]
 
     def self.random
-      TREASURES.sample
+      WEAPONS.sample
     end
   end
 end

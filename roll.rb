@@ -6,7 +6,7 @@ module BattleRoyal
 
     def self.turn(player)
       action = actions.sample
-      !action.nil? ? player.send(action) : puts("#{player.name} missed a turn")
+      !action.nil? ? player.send(action) : puts("\n#{player.name} missed a turn")
     end
 
     def self.weapon(_player)
