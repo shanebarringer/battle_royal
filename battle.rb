@@ -3,7 +3,7 @@ require_relative 'game'
 puts 'Welcome to the Battle Royal. Please enter a name for the competition: '
 name = gets.chomp.capitalize
 
-throwdown = BattleRoyal::Game.new(name.empty? ? nil : name)
+throwdown = BattleRoyal::Game.new(name.empty? ? 'Throwdown' : name)
 throwdown.load_players(ARGV.shift || 'csv/favorite_players.csv')
 lame = BattleRoyal::LamePlayer.new('Stryker', 105, 5)
 throwdown.add_player(lame)

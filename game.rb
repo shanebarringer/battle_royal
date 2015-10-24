@@ -7,7 +7,7 @@ require 'csv'
 module BattleRoyal
   class Game
     attr_accessor :title, :players
-    def initialize(title = 'Throwdown')
+    def initialize(title)
       @title = title
       @players = [].sort
       @total_points = 0
