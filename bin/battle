@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative '../lib/battle_royal/game'
 
 puts 'Welcome to the Battle Royal. Please enter a name for the competition: '
