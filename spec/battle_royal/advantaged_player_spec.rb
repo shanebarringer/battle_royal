@@ -1,4 +1,4 @@
-require_relative 'advantaged_player'
+require 'battle_royal/advantaged_player'
 module BattleRoyal
   describe AdvantagedPlayer do
     before do

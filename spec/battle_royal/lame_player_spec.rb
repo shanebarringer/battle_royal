@@ -1,4 +1,4 @@
-require_relative 'lame_player'
+require 'battle_royal/lame_player'
 module BattleRoyal
   describe LamePlayer do
     before do

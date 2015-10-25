@@ -1,4 +1,4 @@
-require_relative 'weapon_chest'
+require 'battle_royal/weapon_chest'
 module BattleRoyal
   describe Weapon do
     before do

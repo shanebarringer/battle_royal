@@ -1,4 +1,4 @@
-require_relative 'game'
+require 'battle_royal/game'
 module BattleRoyal
   describe Game do
     it 'computes total points as the sum of all player points' do

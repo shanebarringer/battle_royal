@@ -1,10 +1,12 @@
-require_relative 'game'
+require_relative '../lib/battle_royal/game'
 
 puts 'Welcome to the Battle Royal. Please enter a name for the competition: '
 name = gets.chomp.capitalize
 
 throwdown = BattleRoyal::Game.new(name.empty? ? 'Throwdown' : name)
-throwdown.load_players(ARGV.shift || 'csv/favorite_players.csv')
+
+default_players_file = File.join(File.dirname(__FILE__), '../csv/favorite_players.csv')
+throwdown.load_players(ARGV.shift || default_players_file)
 lame = BattleRoyal::LamePlayer.new('Stryker', 105, 5)
 throwdown.add_player(lame)
 awesome = BattleRoyal::AdvantagedPlayer.new('Scorpion', 120)

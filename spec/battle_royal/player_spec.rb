@@ -1,5 +1,5 @@
-require_relative 'player'
-require_relative 'weapon_chest'
+require 'battle_royal/player'
+require 'battle_royal/weapon_chest'
 
 module BattleRoyal
   describe Player do
