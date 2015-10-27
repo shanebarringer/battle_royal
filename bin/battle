@@ -20,15 +20,15 @@ loop do
   rounds = gets.chomp.downcase
 
   case rounds
-    when  /^\d+$/
-      throwdown.play(rounds.to_i) # { throwdown.total_points >= 10_000 }
-    when  'quit', 'exit', 'n'
-      throwdown.result
-      throwdown.winning
-      break
-    else
-      puts 'please enter a number'
-      sleep(1)
+  when  /^\d+$/
+    throwdown.play(rounds.to_i) # { throwdown.total_points >= 10_000 }
+  when  'quit', 'exit', 'n'
+    throwdown.result
+    throwdown.winning
+    break
+  else
+    puts 'please enter a number'
+    sleep(1)
   end
 end
 

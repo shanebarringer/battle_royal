@@ -50,7 +50,6 @@ module BattleRoyal
     def play(rounds)
       start_of_game
       1.upto(rounds) do
-        puts "round: #{rounds}"
         # if a block is given AND the block returns true, break out of loop.
         break if yield if block_given?
         if @players.count > 1
