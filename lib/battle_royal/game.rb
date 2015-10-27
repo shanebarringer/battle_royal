@@ -56,14 +56,15 @@ module BattleRoyal
           @players.each do |player|
             if !fatality?(player)
               Roll.turn(player)
-              # sleep(0.75)
+              sleep(0.75)
               player.attack(attack_player, player.found_weapon(Roll.weapon(player)))
-              # sleep(0.75)
+              sleep(0.75)
               player.points
             elsif fatality?(player)
               @toasty << @players.find { |x| x == player }
-              puts "#{player.name} is no longer with us"
+              puts "\n#{player.name} is no longer with us"
               @players.delete(player)
+              sleep(0.75)
             end
           end
         else

@@ -29,7 +29,7 @@ module BattleRoyal
     def attack(player, found_weapon)
       @health = health - found_weapon
       print " and attacked #{player.name} \n"
-      # sleep(0.75)
+      sleep(0.75)
       puts "#{player.name}'s health is now: #{player.health} \n"
     end
 
