@@ -53,18 +53,18 @@ module BattleRoyal
         # if a block is given AND the block returns true, break out of loop.
         break if yield if block_given?
         if @players.count > 1
-          @players.each do |player|
+          @players.shuffle.each do |player|
             if !fatality?(player)
               Roll.turn(player)
-              sleep(0.75)
+              sleep(0.5)
               player.attack(attack_player, player.found_weapon(Roll.weapon(player)))
-              sleep(0.75)
+              sleep(0.5)
               player.points
             elsif fatality?(player)
               @toasty << @players.find { |x| x == player }
               puts "\n#{player.name} is no longer with us"
               @players.delete(player)
-              sleep(0.75)
+              sleep(0.5)
             end
           end
         else
