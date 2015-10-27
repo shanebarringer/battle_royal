@@ -6,11 +6,12 @@ require_relative 'advantaged_player'
 require 'csv'
 module BattleRoyal
   class Game
-    attr_accessor :title, :players
+    attr_accessor :title, :players, :toasty
     def initialize(title)
       @title = title
       @players = [].sort
       @total_points = 0
+      @toasty = []
     end
 
     def add_player(player)
@@ -49,16 +50,29 @@ module BattleRoyal
     def play(rounds)
       start_of_game
       1.upto(rounds) do
+        puts "round: #{rounds}"
         # if a block is given AND the block returns true, break out of loop.
         break if yield if block_given?
-        @players.each do |player|
-          unless fatality?(player)
-            Roll.turn(player)
-            player.attack(attack_player, player.found_weapon(Roll.weapon(player)))
-            player.points
+        if @players.count > 1
+          @players.each do |player|
+            if !fatality?(player)
+              Roll.turn(player)
+              # sleep(0.75)
+              player.attack(attack_player, player.found_weapon(Roll.weapon(player)))
+              # sleep(0.75)
+              player.points
+            elsif fatality?(player)
+              @toasty << @players.find { |x| x == player }
+              puts "#{player.name} is no longer with us"
+              @players.delete(player)
+            end
           end
+        else
+          puts "\n#{@players[0].name.upcase} IS THE LAST MAN STANDING!!! "
+          break
         end
       end
+      @players |= @toasty
     end
 
     def print_player_and_health(criteria)

@@ -3,7 +3,7 @@ module BattleRoyal
 
   module WeaponChest
     WEAPONS = [
-      Weapon.new(:throwing_star, 5),
+      Weapon.new("throwing star".to_sym, 5),
       Weapon.new(:staff, 25),
       Weapon.new(:axe, 50),
       Weapon.new(:mace, 100),
