@@ -1,14 +1,14 @@
 ## battle royal
 A Mortal Kombat influenced battle royal gem
 
-### To Use 
+### To Use
 run `gem install battle_royal`
 
 In your terminal simply run `$ battle`
 
 ### Notes
 
-Currently, the game allows for users to input a certain number of rounds. The battle will run until there is only 1 player standing. 
+Currently, the game allows for users to input a certain number of rounds. The battle will run until there is only 1 player standing.
 I recommend that you run the game for at least 10 - 100 rounds
 
 
@@ -17,8 +17,3 @@ I recommend that you run the game for at least 10 - 100 rounds
 2. Clone
 3. Create a New Branch
 4. Submit a Pull Request
-
-
-#### TODO
-- Let user select an option run match until there is 1 player left
-- Allow user to upload new players
